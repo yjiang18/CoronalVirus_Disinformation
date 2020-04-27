@@ -7,7 +7,7 @@ import argparse
 from keras.callbacks import ModelCheckpoint
 from tensorflow.keras.utils import to_categorical
 
-def embedding_loader(path, to_file=False):
+def embedding_loader(path, x_path, y_path, to_file=False):
     X = []
     label = []
     i = 0
@@ -27,8 +27,8 @@ def embedding_loader(path, to_file=False):
 
     Y = l_encoder.fit_transform(label)
     if to_file:
-        np.save('./BERT_X_s30_w25.npy', np.array(X))
-        np.save('./BERT_Y_s30_w25.npy', np.array(Y))
+        np.save(x_path, np.array(X))
+        np.save(y_path, np.array(Y))
 
     return np.array(X), np.array(Y)
 
@@ -55,7 +55,7 @@ if __name__ == '__main__':
     max_tok = args.max_tok
 
     if load_tsv:
-        x,y = embedding_loader(infile, to_file=True)
+        x, y = embedding_loader(infile, x_path, y_path, to_file=True)
     else:
         x = np.load(x_path)
         y = np.load(y_path)
