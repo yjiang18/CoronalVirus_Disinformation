@@ -1,6 +1,16 @@
 # CoronalVirus_Disinformation
 
-Run several models, includes RNN with attention, CNN with BatchNorm, and HAN for detecting Convid-19 disinformation during EUvsVirus, this is a multiclass (11 categories) classification, here used bert-as-service to generate word level BERT embedding.
+This is the code of several models, includes RNN with attention, CNN with BatchNorm, and HAN (Hierarchical Attention Network) for detecting Covid-19 disinformation on the EUvsVirus, this is a multiclass (11 categories) classification, and used BERT to generate word level embedding.
+
+## Preparation / Requirements
+
+* Python 3.6 (Anaconda will work best)
+* Tensorflow version 1.14.0
+* Keras version 2.2.4
+* Bert-as-service version 1.10.0
+* beautifulsoup4 version 4.9.0
+* requests version 2.23.0
+* sklearn version 0.22.2
 
 
 ## All results are calculated by 10-fold CV.
