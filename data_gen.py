@@ -6,14 +6,17 @@ from bs4 import BeautifulSoup
 import requests
 import string
 from nltk.tokenize import sent_tokenize, RegexpTokenizer
+import argparse
+
+
 
 class Data2CSV():
-    def __init__(self, src):
+    def __init__(self, src, out):
         self.src = src
-        self.outfilename = './all_new1.tsv'
+        self.out = out
         self.load()
     def load(self):
-        with open(self.outfilename, 'w', encoding='utf-8') as outfile:
+        with open(self.out, 'w', encoding='utf-8') as outfile:
             line = 0
             for filename in glob.glob(os.path.join(self.src, '*.json')):
                 # ann = re.findall('ann\d*', filename)[0] # return format: ann04
@@ -54,4 +57,16 @@ class Data2CSV():
                                 print("Processed line: ", line)
 
 
-Data2CSV('./all/new_all1')
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("infile", type=str, help="Input path to the file folder")
+    parser.add_argument("outfile", type=str, help="Output file")
+    args = parser.parse_args()
+
+
+    outfile = args.outfile
+    infile = args.infile
+
+
+    Data2CSV(src=infile, out=outfile)
