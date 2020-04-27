@@ -11,7 +11,7 @@ This is the code of several models, includes RNN with attention, CNN with BatchN
 * beautifulsoup4 version 4.9.0
 * requests version 2.23.0
 * sklearn version 0.22.2
-
+* NLTK version 3.5
 
 ## All results are calculated by 10-fold CV.
 
