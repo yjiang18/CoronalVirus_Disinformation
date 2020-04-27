@@ -7,11 +7,20 @@ This is the code of several models, includes RNN with attention, CNN with BatchN
 * Python 3.6 (Anaconda will work best)
 * Tensorflow version 1.14.0
 * Keras version 2.2.4
-* Bert-as-service version 1.10.0
+* bert-as-service version 1.10.0
 * beautifulsoup4 version 4.9.0
 * requests version 2.23.0
 * sklearn version 0.22.2
 * NLTK version 3.5
+
+Preparation steps:
+1. Create a directory and store the json files in that directory.
+2. Run `data_gen.py -infile /path_to_input_dir -outfile /path_to_output_tsv `, this will generate a tsv file contains claims, explainations, source webpage text and labels.
+3. Run command `bert-service-start -model_dir /path_to_your_bert_model/ -max_seq_len 25 -pooling_strategy NONE` to initialize [bert-as-service](https://github.com/hanxiao/bert-as-service).
+4. Run `line2bert1.py -infile /path_to_input_tsv -outfile /path_to_output_tsv -seq_num 30 -max_seq_len 25` to generate BERT word embedding with shape `[num_doc, num_seq, max_seq_len, 768]`.
+5. Run `main.py -infile /path_to_bert_embed_tsv -load_tsv True -x /path_to_x.npy -y /path_to_y.npy -seq_num 30 -max_seq_len 25`
+
+
 
 ## All results are calculated by 10-fold CV.
 
