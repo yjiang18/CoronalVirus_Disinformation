@@ -41,7 +41,7 @@ if __name__ == '__main__':
     parser.add_argument("x", type=str, help="path to x.npy")
     parser.add_argument("y", type=str, help='path to y.npy')
 
-    parser.add_argument("seq_len", type=int, help="maximum sequence length")
+    parser.add_argument("seq_num", type=int, help="maximum number of sequences")
     parser.add_argument("max_tok", type=int, help="maximum number of tokens")
 
 
@@ -51,7 +51,7 @@ if __name__ == '__main__':
     load_tsv = args.load_tsv
     x_path = args.x
     y_path = args.y
-    seq_len = args.seq_len
+    seq_num = args.seq_num
     max_tok = args.max_tok
 
     if load_tsv:
@@ -74,7 +74,7 @@ if __name__ == '__main__':
         fold += 1
 
         model = Ye_HAN()
-        model.build_model(seq_len, max_tok, 768)
+        model.build_model(seq_num, max_tok, 768)
 
         cp = ModelCheckpoint('./HAN' + '_fold_' + str(fold) + "_%s.h5",
                              monitor='val_acc',

@@ -10,12 +10,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("infile", type=str, help="Input tsv")
     parser.add_argument("outfile", type=str, help="Output tsv")
-    parser.add_argument("seq_len", type=int, help="maximum sequence length")
+    parser.add_argument("seq_num", type=int, help="maximum number of sequences")
     parser.add_argument("max_tok", type=int, help="maximum number of tokens")
 
     args = parser.parse_args()
 
-    seq_len = args.seq_len
+    seq_num = args.seq_num
     max_tok = args.max_tok
     outfile = args.outfile
     infile = args.infile
@@ -34,8 +34,8 @@ if __name__ == '__main__':
                 all = claim + ' ' + explaination+ ' ' + web
                 all = sent_tokenize(all)
 
-                vec = bc.encode(all[:seq_len])
-                pad_vec = np.zeros((seq_len, max_tok, 768))
+                vec = bc.encode(all[:seq_num])
+                pad_vec = np.zeros((seq_num, max_tok, 768))
                 pad_vec[:vec.shape[0], :vec.shape[1], :vec.shape[2]] = vec
                 out = [a.tolist() for a in pad_vec]
                 print(out, label, sep='\t', file=outp)
